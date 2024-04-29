@@ -39,6 +39,17 @@ public class GameTest {
         assertThat(result.getBalls()).isEqualTo(0);
     }
 
+    @Test
+    void returnSolvedResultIfUnMatchedNumber() {
+        game.question = "123";
+        GuessResult result = game.guess("456");
+
+        assertThat(result).isNotNull();
+        assertThat(result.isSolved()).isEqualTo(false);
+        assertThat(result.getStrikes()).isEqualTo(0);
+        assertThat(result.getBalls()).isEqualTo(0);
+    }
+
     private void assertIllegalArgument(String guessNumber) {
         try {
             game.guess(guessNumber);
