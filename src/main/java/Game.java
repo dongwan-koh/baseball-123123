@@ -8,7 +8,15 @@ public class Game {
         if(guessNumber.equals(question)) {
             return new GuessResult(true, 3, 0);
         } else {
-            return new GuessResult(false, 0, 0);
+            int strikes = 0;
+            for (int i=0; i < question.length(); i++) {
+                char charAt = guessNumber.charAt(i);
+                int indexOf = question.indexOf(charAt);
+                if(indexOf == i) {
+                    strikes++;
+                }
+            }
+            return new GuessResult(false, strikes, 0);
         }
     }
 

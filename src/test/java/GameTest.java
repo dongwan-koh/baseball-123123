@@ -31,15 +31,19 @@ public class GameTest {
     @Test
     void returnSolvedResultIfMatchedNumber() {
         generateQuestion("123");
-        GuessResult result = game.guess("123");
-        assertMatchedNumber(result, true, 3, 0);
+        assertMatchedNumber(game.guess("123"), true, 3, 0);
     }
 
     @Test
     void returnSolvedResultIfUnMatchedNumber() {
         generateQuestion("123");
-        GuessResult result = game.guess("456");
-        assertMatchedNumber(result, false, 0, 0);
+        assertMatchedNumber(game.guess("456"), false, 0, 0);
+    }
+
+    @Test
+    public void returnUnsolvedResultIfSomeMatchedNumber() {
+        generateQuestion("123");
+        assertMatchedNumber(game.guess("120"), false, 2, 0);
     }
 
     private void generateQuestion(String questionNumber) {
